@@ -5,41 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Web 7</title>
+    <link rel="shortcut icon" type="image/jpg" href="/static/img/ball.png"/>
+    
     <!-- bootstrap -->
     <link rel="stylesheet" href="/static/bootstrap.min.css">
 
     <!-- swiper -->
     <link rel="stylesheet" href="/static/swiper-bundle.min.css"/>
     <script defer src="/static/swiper-bundle.min.js"></script>
-
     
     <script defer src="/static/index.js"></script>
     <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+<body style="overflow: hidden">
+<div class="my-preloader" style="background-color:#f3f3f3;position:absolute;top:0;left:0;height:100vh;width:100%;color:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999999;transition:transform 1.5s ease"><div style="text-transform:uppercase;letter-spacing:.2em;margin-bottom:1rem">Загрузка</div><span class="my-progress"></span><div style="width:80vmin"><div class="my-progress-bar" style="height:.5rem;transition:width .4s ease;border-radius:1rem;background-color:#000"></div></div></div>
 
-<div class="content">
+<div class="content d-flex flex-column vh-100 bg-light">
+    <header class="header py-3 text-center bg-dark">
+        <img src="/static/img/logo-nba.svg">
+    </header>
 
-    <div class="container">
-        <div class="row vh-100 justify-content-center align-items-center">
-            <div class="col-auto swiper-button-prev">
-
-            </div>
-            <div class="col-auto">
-                <div class="swiper">
-                    <!-- Additional required wrapper -->
-                    <div class="swiper-wrapper">
-                    </div>
-                    <!-- If we need pagination -->
-                    <div class="swiper-pagination"></div>
-                </div>
-            </div>
-            <div class="col-auto swiper-button-next">
-
-            </div>
+    <div class="flex-grow-1 d-flex align-items-center">
+        <div class="swiper">
+            <div class="swiper-wrapper"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
         </div>
     </div>
-
+    <div class="swiper-pagination"></div>
 </div>
 
 </body>
