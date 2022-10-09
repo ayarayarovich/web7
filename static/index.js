@@ -37,7 +37,7 @@ const CPreloaderProgressBar = {
     render() {
         const e_progress = document.querySelector(".my-preloader .my-progress");
         const e_progressBar = document.querySelector(".my-preloader .my-progress-bar");
-        const percent = (this.progress / this.finalProgress) * 100;
+        const percent = (100 * this.progress / this.finalProgress).toFixed(1);
         e_progress.innerText = `${percent} %`;
         e_progressBar.style.width = `${percent}%`;
     }
