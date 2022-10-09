@@ -1,4 +1,5 @@
 const backgroundUrls = [
+    "/static/img/funguy.webp",
     "/static/img/1.png",
     "/static/img/2.png",
     "/static/img/3.png",
