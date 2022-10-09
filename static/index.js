@@ -1,3 +1,5 @@
+const NOOP = () => {};
+
 const backgroundUrls = [
     "/static/img/funguy.webp",
     "/static/img/1.png",
@@ -27,6 +29,17 @@ function loadImage(src) {
     });
 }
 
+function loadImages(sources, afterEachLoadCallback = NOOP) {
+    const promises = [];
+    for (const src of sources) {
+        promises.push(loadImage(src).then(image => {
+            afterEachLoadCallback(image);
+            return image;
+        }));
+    }
+    return Promise.all(promises);
+}
+
 const CPreloaderProgressBar = {
     progress: 0,
     finalProgress: backgroundUrls.length,
@@ -43,21 +56,12 @@ const CPreloaderProgressBar = {
     }
 }
 
-function renderGalleryImagesInto(container) {
-    let promises = [];
-    for (const backgroundSrc of backgroundUrls) {
-        promises.push(
-            loadImage(backgroundSrc).then(function(image) {
-                const swiperSlide = document.createElement('div');
-                swiperSlide.classList.add("swiper-slide");
-                image.classList.add("gallery-image");
-                swiperSlide.appendChild(image);
-                container.appendChild(swiperSlide);
-                CPreloaderProgressBar.increment();
-            })
-        );
-    }
-    return Promise.all(promises);
+function renderGalleryImage(image) {
+    return `
+        <div class="swiper-slide">
+            <img class="gallery-image" src="${image.src}" alt="">
+        </div>
+    `
 }
 
 window.addEventListener("load", function () {
@@ -72,7 +76,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     CPreloaderProgressBar.render();
 
     const swiperWrapper = document.querySelector(".swiper-wrapper");
-    await renderGalleryImagesInto(swiperWrapper);
+    const images = await loadImages(backgroundUrls, () => {
+        CPreloaderProgressBar.increment();
+    });
+    images.forEach(image => {
+        swiperWrapper.innerHTML += renderGalleryImage(image);
+    });
 
     const swiper = new Swiper('.swiper', {
         direction: 'horizontal',
