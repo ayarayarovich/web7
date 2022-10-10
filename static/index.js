@@ -30,13 +30,14 @@ function loadImage(src) {
 }
 
 function loadImages(sources, afterEachLoadCallback = NOOP) {
-    const promises = [];
-    for (const src of sources) {
-        promises.push(loadImage(src).then(image => {
-            afterEachLoadCallback(image);
-            return image;
-        }));
-    }
+    const promises = backgroundUrls.map(url =>
+        loadImage(url)
+            .then(img => {
+                afterEachLoadCallback();
+                return img;
+            })
+    );
+
     return Promise.all(promises);
 }
 
