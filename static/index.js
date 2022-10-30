@@ -1,8 +1,8 @@
 const NOOP = () => {};
 
 const backgroundUrls = [
-    "/static/img/funguy.webp",
     "/static/img/1.png",
+    "/static/img/funguy.webp",
     "/static/img/2.png",
     "/static/img/3.png",
     "/static/img/4.png",
@@ -87,7 +87,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     const swiper = new Swiper('.swiper', {
         direction: 'horizontal',
         loop: true,
-        centeredSlides: true,
         spaceBetween: 16,
         keyboard: {
             enabled: true,
